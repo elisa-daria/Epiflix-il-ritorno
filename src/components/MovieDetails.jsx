@@ -8,14 +8,14 @@ import Loading from "./Loading";
 
 const MovieDetails = () => {
   const params = useParams();
-
+  const movieID = params.movieId;
   const myURL = "https://www.omdbapi.com/?apikey=9c621114&i=";
   const [MovieDetail, setMovieDetail] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const gettingMovie = () => {
     setIsLoading(true);
-    fetch(myURL + params.movieId)
+    fetch(myURL + movieID)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -34,7 +34,7 @@ const MovieDetails = () => {
       });
   };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => gettingMovie(), [params.movieId]);
+  useEffect(() => gettingMovie(), [movieID]);
   return (
     <Container>
       <Row className="justify-content-center align-items-center">
