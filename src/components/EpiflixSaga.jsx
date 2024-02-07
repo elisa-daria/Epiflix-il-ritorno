@@ -53,7 +53,7 @@ class EpiflixSaga extends Component {
               key={movie.imdbID}
             >
               {" "}
-              <Link to={/movie-details/ + movie.imdbID}>
+              <Link to={/details/ + movie.imdbID}>
                 <Image src={movie.Poster} fluid style={{ height: 350 }} />
               </Link>
             </Col>

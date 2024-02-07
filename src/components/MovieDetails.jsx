@@ -2,16 +2,17 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 const MovieDetails = () => {
-  const addressBar = new URLSearchParams(window.location.search);
-  const movieID = addressBar.get("movieId");
+  const params = useParams();
+
   const myURL = "https://www.omdbapi.com/?apikey=9c621114&i=";
-  const [movieDetails, setMovieDetails] = useState(null);
+  const [MovieDetail, setMovieDetail] = useState(null);
 
   const gettingMovie = () => {
-    fetch(myURL + movieID)
+    fetch(myURL + params.movieId)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -21,21 +22,28 @@ const MovieDetails = () => {
       })
       .then((movie) => {
         console.log(movie);
-        setMovieDetails({
-          movie,
-        });
+        setMovieDetail(movie);
       })
       .catch((err) => {
         alert("ERRORE " + err);
       });
   };
-
+  useEffect(() => gettingMovie(), [params.movieId]);
   return (
     <Container>
-      <Row className="justify-content-center align-items center h-100">
+      <Row className="justify-content-center align-items-center h-100">
         <Col xs={8} className="text-center text-white">
-          {/* <h1>{movieDetails.name}</h1> */}
-          {/* <Image fluid thumbnail src={movieDetails.Poster}></Image> */}
+          {MovieDetail && (
+            <>
+              <h1>{MovieDetail.Title}</h1>
+              <Image
+                fluid
+                thumbnail
+                src={MovieDetail.Poster}
+                alt={MovieDetail.Title + "-cover"}
+              />
+            </>
+          )}
         </Col>
       </Row>
     </Container>

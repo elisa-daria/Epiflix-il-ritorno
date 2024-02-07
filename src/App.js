@@ -12,8 +12,8 @@ import MovieDetails from "./components/MovieDetails";
 
 function App() {
   return (
-    <BrowserRouter>
-      <>
+    <>
+      <BrowserRouter>
         <header>
           <EpiflixNavBar logo={logo} logoAlt="netflix-logo" />
           <EpiflixGenres genre="Drama,LGBTQ+,Crime" />
@@ -39,14 +39,14 @@ function App() {
               path="/"
             />
             <Route element={<EpiflixTvShow />} path="/tv-show" />
-            <Route element={<MovieDetails />} path="/movie-details/:movieId" />
+            <Route element={<MovieDetails />} path="/details/:movieId" />
           </Routes>
         </main>
         <footer>
           <EpiflixFooter />
         </footer>
-      </>
-    </BrowserRouter>
+      </BrowserRouter>
+    </>
   );
 }
 

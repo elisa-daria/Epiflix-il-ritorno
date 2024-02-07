@@ -37,14 +37,6 @@ const EpiflixNavBar = (props) => {
             >
               Home
             </Link>
-            <Link
-              to="/movie-details"
-              className={`fw-bold nav-link ${
-                location.pathname === "/" ? "active" : ""
-              }`}
-            >
-              Movie Details
-            </Link>
             <Nav.Link href="#" className="fw-bold">
               Movies
             </Nav.Link>
